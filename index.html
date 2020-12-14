@@ -32,7 +32,7 @@
             <div class="links__to"><a href="#">QUIENES SOMOS</a></div>
             <div class="links__to"><a href="#">CONTÁCTANOS</a></div>
             <div class="links__to"><a href="#">Mi cuenta</a></div>
-            <div class="links__to"><a href="#">INICIAR SESIÓN</a></div>
+            <div class="links__to"><a href="http://localhost/POServicio/public/">INICIAR SESIÓN</a></div>
         </div>
     </nav>
    
@@ -126,32 +126,43 @@
                     <span><img" alt=""></span>
                     <p>CONTÁCTANOS</p>
                 </div>
+
+            <form method="post" autocomplete="off" name="google-sheet">
+
                 <div class="first_inputs">
                     <div class="first__contain">
-                        <div class="label"><p>Nombre *</p></div>
-                        <div><input type="text" name="nombre" class="input-f"></div>
+                        <div class="label" id="name"><p>Nombre *</p></div>
+                        <div><input type="text" name="Nombre" class="input-f"></div>
                     </div>
                     <div class="two__contain">
-                        <div class="label"><p>Teléfono / Celular</p></div>
-                        <div><input type="text" name="telf" class="input-f"></div>
+                        <div class="label" id="telf"><p>Teléfono / Celular</p></div>
+                        <div><input type="text" name="Telefono" class="input-f"></div>
                     </div>
                 </div>
                 <div class="two_inputs">
-                    <div><p class="label">Correo electrónico *</p></div>
-                    <div><input type="text" name="correo" class="input-f"></div>
+                    <div><p class="label" id="email">Correo electrónico *</p></div>
+                    <div><input type="text" name="Correo_Electronico" class="input-f"></div>
                 </div>
                 <div class="three_inputs">
-                    <div class="label"><p>Mensaje *</p></div>
-                    <div><input type="text" name="mensaje" class="input-f"></div>
+                    <div class="label" id="msj"><p>Mensaje *</p></div>
+                    <div><textarea type="text" name="Mensaje" class="input-f"></textarea></div>
                 </div>
+
+           
+
                 <div class="btn__inputs">
-                    <div class="btns">
+                    <!-- <div class="btns">
                         <div><a href="#" class="btn-clean btn">Limpiar Casillas</a></div>
-                    </div>
+                    </div> -->
                     <div class="btns">
-                        <div><a href="#" class="btn-send btn">Enviar</a></div>
+                        <div>
+                            <input name="submit" type="submit" class="btn-send btn" value="Enviar Datos">
+                        </div>
                     </div>
                 </div>
+
+            </form>
+
             </div>
         </div>
     </section>
@@ -159,7 +170,7 @@
     <!-- S4 -->
     <footer class="footer">
         <div>
-            <p>©2020 Derechos Reservados por Jhonatan Ariza</p>
+            <p>Copyright &copy; MarpTech Group - 2020 by Jhonatan Ariza </p>
         </div>
         
     </footer>
@@ -170,7 +181,7 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="Js/swipper.js"></script>
@@ -180,5 +191,18 @@
             duration:2000,
         });
       </script>
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwV3ZKu4ME3bSiGzTWwbDlmgvbJbKP4I6SaTEr4b8OME2VnZFk/exec';
+        const form = document.forms['google-sheet'];
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
